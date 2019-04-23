@@ -7,6 +7,9 @@
 3. eslint for ts & tsx -> standard style
 4. typescript
 5. antd
+6. react-router
+7. react-redux + immer
+8. picgo-bump-version
 
 ## Available Scripts
 

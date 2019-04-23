@@ -10,14 +10,34 @@
     "antd": "^3.16.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-redux": "^7.0.2",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
+    "redux": "^4.0.1",
     "typescript": "3.4.4"
   },
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
-    "eject": "react-app-rewired eject"
+    "eject": "react-app-rewired eject",
+    "cz": "git-cz"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": "./node_modules/@picgo/bump-version/.cz-config.js"
+    }
+  },
+  "commitlint": {
+    "extends": ["./node_modules/@picgo/bump-version/commitlint-picgo"]
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -29,8 +49,15 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@commitlint/cli": "^7.5.2",
+    "@picgo/bump-version": "^1.0.2",
+    "@types/react-redux": "^7.0.8",
+    "@types/react-router-dom": "^4.3.2",
     "@typescript-eslint/eslint-plugin": "^1.6.0",
     "@typescript-eslint/parser": "^1.6.0",
+    "commitizen": "^3.1.1",
+    "conventional-changelog": "^3.1.3",
+    "cz-customizable": "^6.0.0",
     "eslint": "^5.16.0",
     "eslint-config-react-app": "^3.0.8",
     "eslint-config-standard": "^12.0.0",
@@ -42,6 +69,7 @@
     "eslint-plugin-promise": "^4.1.1",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-standard": "^4.0.0",
+    "husky": "^1.3.1",
     "prettier": "^1.17.0",
     "prettier-eslint": "^8.8.2",
     "react-app-rewire-stylus-modules": "^0.0.2",

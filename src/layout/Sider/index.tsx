@@ -1,40 +1,55 @@
 import React from 'react'
+import { Link, withRouter, RouteComponentProps } from 'react-router-dom'
 import {
   Layout, Menu, Icon
 } from 'antd'
+import style from './index.module.styl'
+// import routes from '../../routes'
 
 const {
   Sider
 } = Layout
 
-const SubMenu = Menu.SubMenu
+// const SubMenu = Menu.SubMenu
 
-class Siderbar extends React.Component {
+type PathParamsType = {
+  // type whatever you expect in the this.props.match.params.*
+}
+type PropsType = RouteComponentProps<PathParamsType> & {
+  // your props here
+}
+
+class Siderbar extends React.Component<PropsType> {
   state = {
     collapsed: false
   }
   onCollapse = (collapsed: boolean) => {
-    console.log(collapsed)
     this.setState({ collapsed })
   }
   render () {
+    const { location } = this.props
     return (
       <Sider
         collapsible
         collapsed={this.state.collapsed}
         onCollapse={this.onCollapse}
       >
-        <div className='logo' />
-        <Menu theme='dark' defaultSelectedKeys={['1']} mode='inline'>
-          <Menu.Item key='1'>
-            <Icon type='pie-chart' />
-            <span>Option 1</span>
+        <div className={style.logo}>
+          <span>React</span>
+        </div>
+        <Menu
+          theme='dark'
+          defaultSelectedKeys={['1']}
+          mode='inline'
+          selectedKeys={[location.pathname]}
+        >
+          <Menu.Item key='/'>
+            <Link to='/'>
+              <Icon type='pie-chart' />
+              <span>数据统计</span>
+            </Link>
           </Menu.Item>
-          <Menu.Item key='2'>
-            <Icon type='desktop' />
-            <span>Option 2</span>
-          </Menu.Item>
-          <SubMenu
+          {/* <SubMenu
             key='sub1'
             title={<span><Icon type='user' /><span>User</span></span>}
           >
@@ -52,10 +67,10 @@ class Siderbar extends React.Component {
           <Menu.Item key='9'>
             <Icon type='file' />
             <span>File</span>
-          </Menu.Item>
+          </Menu.Item> */}
         </Menu>
       </Sider>
     )
   }
 }
-export default Siderbar
+export default withRouter(Siderbar)
